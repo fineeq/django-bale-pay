@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "django-bale-payments"
+version = "0.1.0"
+description = "Native Bale Wallet payments for Django."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Fineq" }]
+keywords = ["django", "bale", "payments", "bale-wallet", "iran"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Framework :: Django",
+  "Framework :: Django :: 4.2",
+  "Framework :: Django :: 5.0",
+  "Programming Language :: Python :: 3 :: Only",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+    "Django>=4.2",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-django>=4.8", "ruff>=0.6"]
+
+[project.urls]
+Homepage = "https://github.com/fineeq/django-bale-pay"
+Repository = "https://github.com/fineeq/django-bale-pay"
+Issues = "https://github.com/fineeq/django-bale-pay/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["django_bale_payments"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "assets",
+  "tests",
+  ".github",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+ignore = ["RUF012"]
+
